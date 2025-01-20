@@ -3,7 +3,7 @@ import Home from "./pages/home/Home";
 import Products from "./pages/Products";
 import Registration from "./components/features/registration/Registration";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <Routes>
@@ -13,6 +13,6 @@ function App() {
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;

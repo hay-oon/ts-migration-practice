@@ -3,7 +3,7 @@ import Footer from "../components/layout/footer/Footer";
 import BestItems from "../components/features/products/bestitems/BestItems";
 import OnSaleItems from "../components/features/products/onsaleitems/OnSaleItems";
 
-function Products() {
+const Products: React.FC = () => {
   return (
     <>
       <Header />
@@ -12,6 +12,6 @@ function Products() {
       <Footer />
     </>
   );
-}
+};
 
 export default Products;

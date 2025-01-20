@@ -8,19 +8,19 @@ import feature3Image from "../../assets/images/home/feature3-image.png";
 import heroImage from "../../assets/images/home/hero-image.png";
 import bottomBannerImage from "../../assets/images/home/bottom-banner-image.png";
 
-function Home() {
+const Home: React.FC = () => {
   return (
     <>
       <Header />
-      <section class="landing">
-        <div class="content">
-          <div class="intro">
+      <section className="landing">
+        <div className="content">
+          <div className="intro">
             <h1>
               일상의 모든 물건을
               <br />
               거래해 보세요
             </h1>
-            <Link to="/items" class="button">
+            <Link to="/items" className="button">
               구경하러가기
             </Link>
           </div>
@@ -28,11 +28,11 @@ function Home() {
         </div>
       </section>
 
-      <section class="info hot-item">
-        <div class="card">
+      <section className="info hot-item">
+        <div className="card">
           <img src={feature1Image} alt="feature1Image" />
-          <div class="card-content">
-            <div class="badge">Hot item</div>
+          <div className="card-content">
+            <div className="badge">Hot item</div>
             <h1>
               인기 상품을
               <br />
@@ -47,11 +47,11 @@ function Home() {
         </div>
       </section>
 
-      <section class="info search">
-        <div class="card">
+      <section className="info search">
+        <div className="card">
           <img src={feature2Image} alt="feature2Image" />
-          <div class="card-content">
-            <div class="badge">Search</div>
+          <div className="card-content">
+            <div className="badge">Search</div>
             <h1>
               구매를 원하는
               <br />
@@ -66,11 +66,11 @@ function Home() {
         </div>
       </section>
 
-      <section class="info register">
-        <div class="card">
+      <section className="info register">
+        <div className="card">
           <img src={feature3Image} alt="feature3Image" />
-          <div class="card-content">
-            <div class="badge">Register</div>
+          <div className="card-content">
+            <div className="badge">Register</div>
             <h1>
               판매를 원하는
               <br />
@@ -85,8 +85,8 @@ function Home() {
         </div>
       </section>
 
-      <section class="banner">
-        <div class="content">
+      <section className="banner">
+        <div className="content">
           <h1>
             믿을 수 있는
             <br />
@@ -102,6 +102,6 @@ function Home() {
       <Footer />
     </>
   );
-}
+};
 
 export default Home;
