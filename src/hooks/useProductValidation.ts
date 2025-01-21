@@ -1,7 +1,25 @@
 import { useState, useEffect } from "react";
 
-export const useProductValidation = (product) => {
-  const [errors, setErrors] = useState({
+interface Product {
+  name: string;
+  description: string;
+  price: string;
+}
+
+interface Errors {
+  name: string;
+  description: string;
+  price: string;
+}
+
+// useProductValidation 의 return값 타입 정의
+interface ValidationResult {
+  errors: Errors;
+  validateTag: (tag: string) => string;
+}
+
+export const useProductValidation = (product: Product): ValidationResult => {
+  const [errors, setErrors] = useState<Errors>({
     name: "",
     description: "",
     price: "",
@@ -11,8 +29,9 @@ export const useProductValidation = (product) => {
     validateFields();
   }, [product]);
 
+  // 필드 유효성 검사 함수
   const validateFields = () => {
-    const newErrors = {
+    const newErrors: Errors = {
       name: "",
       description: "",
       price: "",
@@ -42,7 +61,8 @@ export const useProductValidation = (product) => {
     setErrors(newErrors);
   };
 
-  const validateTag = (tag) => {
+  // 태그 검증 함수
+  const validateTag = (tag: string): string => {
     if (tag.length > 5) {
       return "5글자 이내로 입력해주세요";
     }

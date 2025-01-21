@@ -5,7 +5,7 @@ import facebookLogo from "../../../assets/images/social/facebook-logo.svg";
 import twitterLogo from "../../../assets/images/social/twitter-logo.svg";
 import youtubeLogo from "../../../assets/images/social/youtube-logo.svg";
 
-function Footer() {
+const Footer: React.FC = () => {
   return (
     <footer>
       <div>©codeit - 2024</div>
@@ -45,6 +45,6 @@ function Footer() {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

@@ -6,9 +6,10 @@ import NavMenu from "../../layout/navigation/NavMenu";
 import mobileLogo from "../../../assets/images/logo/headerlogo_mobile.png";
 import Button from "../../common/Button";
 
-function Header() {
+// Header 컴포넌트 정의
+const Header: React.FC = () => {
   const location = useLocation(); // 현재 경로 가져오기
-  const isItemsPage = location.pathname === "/items";
+  const isItemsPage: boolean = location.pathname === "/items"; // 현재 페이지가 '/items'인지 확인
 
   return (
     <div className="header">
@@ -23,7 +24,9 @@ function Header() {
           <img src={mobileLogo} alt="판다마켓 홈" className="mobile-logo" />
         </Link>
         <div className="nav-menu-container">
-          <NavMenu>자유게시판</NavMenu>
+          <NavMenu isActive={false} to="/board">
+            자유게시판
+          </NavMenu>
           <NavMenu isActive={isItemsPage} to="/items">
             중고마켓
           </NavMenu>
@@ -37,6 +40,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;
