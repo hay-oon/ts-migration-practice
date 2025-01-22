@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent, KeyboardEvent, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../layout/header/Header";
 import Footer from "../../layout/footer/Footer";
@@ -9,18 +9,28 @@ import { useProductValidation } from "../../../hooks/useProductValidation";
 
 const BASE_URL = "https://five-sprint-mission-be.onrender.com/api/products";
 
-function Registration() {
+// product 객체의 타입 지정
+interface Product {
+  name: string;
+  description: string;
+  price: string;
+  tags: string[];
+}
+
+const Registration = () => {
   const navigate = useNavigate();
-  const [product, setProduct] = useState({
+  const [product, setProduct] = useState<Product>({
     name: "",
     description: "",
     price: "",
     tags: [],
   });
-  const [tagError, setTagError] = useState("");
+  const [tagError, setTagError] = useState<string>("");
   const { errors, validateTag } = useProductValidation(product);
 
-  const handleInput = (e) => {
+  const handleInput = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target; // input 태그의 name과 value를 가져온다.
     setProduct({
       ...product,
@@ -29,10 +39,10 @@ function Registration() {
   };
 
   // onkeypress 이벤트 핸들러
-  const addTag = (e) => {
-    if (e.key === "Enter" && e.target.value.trim()) {
+  const addTag = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && e.currentTarget.value.trim()) {
       e.preventDefault(); // 폼 제출 시 기본 동작 방지
-      const newTag = e.target.value.trim();
+      const newTag = e.currentTarget.value.trim();
       const tagError = validateTag(newTag);
 
       // 2-1. 태그 유효성 검사 실패 시
@@ -48,20 +58,20 @@ function Registration() {
         tags: [...product.tags, newTag],
       });
       setTimeout(() => {
-        e.target.value = "";
+        e.currentTarget.value = "";
       }, 0); // 마지막에 문자가 비워지지 않는 오류가 발생하여 비동기 처리로 해결
     }
   };
 
   // 태그 삭제 함수: 삭제할 인덱스와 일치하지 않는 배열만 반환
-  const handleRemoveTag = (indexToRemove) => {
+  const handleRemoveTag = (indexToRemove: number) => {
     setProduct({
       ...product,
       tags: product.tags.filter((_, index) => index !== indexToRemove), //_의 의미: 배열의 값이 필요 없을 때 사용
     });
   };
 
-  const registerProduct = async (e) => {
+  const registerProduct = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault(); // 폼 제출 시 기본 동작 방지
 
     try {
@@ -110,7 +120,7 @@ function Registration() {
             등록
           </Button>
         </div>
-        <form id="registration-form" onSubmit={registerProduct}>
+        <form id="registration-form" onSubmit={(e) => e.preventDefault()}>
           <div className="form-group">
             <label>상품명</label>
             <input
@@ -177,6 +187,6 @@ function Registration() {
       <Footer />
     </>
   );
-}
+};
 
 export default Registration;

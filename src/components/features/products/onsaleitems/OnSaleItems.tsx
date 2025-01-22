@@ -11,12 +11,21 @@ import Button from "../../../common/Button";
 
 const BASE_URL = "https://five-sprint-mission-be.onrender.com/api/products";
 
-function OnSaleItems() {
-  const [productList, setProductList] = useState([]);
-  const [orderBy, setOrderBy] = useState("recent");
-  const [keyword, setKeyword] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+// Product 인터페이스 정의
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  images?: string;
+  favoriteCount?: number;
+}
+
+const OnSaleItems: React.FC = () => {
+  const [productList, setProductList] = useState<Product[]>([]);
+  const [orderBy, setOrderBy] = useState<string>("recent");
+  const [keyword, setKeyword] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
   const pageSize = useResponsivePageSize({ mobile: 4, tablet: 6, desktop: 10 });
   const navigate = useNavigate();
 
@@ -64,8 +73,8 @@ function OnSaleItems() {
               alt={item.name}
               className="itemCard"
               onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = defaultImage;
+                (e.target as HTMLImageElement).onerror = null; // as 로 타입지정 (??)
+                (e.target as HTMLImageElement).src = defaultImage;
               }}
             />
             <div className="itemInfo">
@@ -87,6 +96,6 @@ function OnSaleItems() {
       />
     </section>
   );
-}
+};
 
 export default OnSaleItems;

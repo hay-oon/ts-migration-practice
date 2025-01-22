@@ -1,11 +1,20 @@
 import { useState } from "react";
 import toggleIcon from "../../../assets/icons/ic_arrow_down.png";
 
-function ProductSortDropdown({ orderBy, setOrderBy }) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+// Props의 타입 정의
+interface ProductSortDropdownProps {
+  orderBy: string;
+  setOrderBy: (value: string) => void; // 함수이지만 return 값이 없으므로 void
+}
+
+const ProductSortDropdown: React.FC<ProductSortDropdownProps> = ({
+  orderBy,
+  setOrderBy,
+}) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   // dropdown handler
-  const handleSortChange = (value) => {
+  const handleSortChange = (value: string) => {
     setOrderBy(value);
     setIsDropdownOpen(false);
   };
@@ -33,6 +42,6 @@ function ProductSortDropdown({ orderBy, setOrderBy }) {
       )}
     </div>
   );
-}
+};
 
 export default ProductSortDropdown;
