@@ -1,12 +1,22 @@
 import "./Pagination.css";
 
-function Pagination({ currentPage, totalPages, onPageChange }) {
-  const getPageNumbers = () => {
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
+
+const Pagination: React.FC<PaginationProps> = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+}) => {
+  const getPageNumbers = (): number[] => {
     const pageGroup = Math.ceil(currentPage / 5);
     const startPage = (pageGroup - 1) * 5 + 1;
     const endPage = Math.min(pageGroup * 5, totalPages);
 
-    const pageNumbers = [];
+    const pageNumbers: number[] = [];
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(i);
     }
@@ -44,6 +54,6 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
       </button>
     </div>
   );
-}
+};
 
 export default Pagination;

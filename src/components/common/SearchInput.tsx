@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import vectorIcon from "../../assets/icons/Vector.png";
 
-const SearchInput = ({ keyword, setKeyword }) => {
-  const [inputValue, setInputValue] = useState(keyword);
+// props의 타입
+interface SearchInputProps {
+  keyword: string;
+  setKeyword: (value: string) => void;
+}
+
+const SearchInput: React.FC<SearchInputProps> = ({ keyword, setKeyword }) => {
+  const [inputValue, setInputValue] = useState<string>(keyword);
 
   // onChange 이벤트 핸들러
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -18,7 +24,7 @@ const SearchInput = ({ keyword, setKeyword }) => {
     return () => {
       clearTimeout(handler);
     };
-  }, [inputValue]);
+  }, [inputValue, setKeyword]);
 
   return (
     <div className="searchInput">

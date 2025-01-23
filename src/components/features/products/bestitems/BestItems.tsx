@@ -6,8 +6,18 @@ import useResponsivePageSize from "../../../../hooks/useResponsivePageSize";
 
 const BASE_URL = "https://panda-market-api.vercel.app";
 
-function BestItems() {
-  const [productLists, setProductLists] = useState([]);
+// 상품 인터페이스 정의
+interface Product {
+  id: string;
+  name: string;
+  title: string;
+  price: number;
+  images?: string;
+  favoriteCount?: number;
+}
+
+const BestItems: React.FC = () => {
+  const [productLists, setProductLists] = useState<Product[]>([]);
   const pageSize = useResponsivePageSize({ mobile: 1, tablet: 2, desktop: 4 });
 
   // fetch data
@@ -30,8 +40,6 @@ function BestItems() {
     fetchBestItems();
   }, [pageSize]);
 
-  // const visibleProducts = productLists.slice(0, pageSize); // 프론트에서 리스트를 관리하는 방식에서 백으로 넘겨주는 방식으로 변경
-
   return (
     <section className="container">
       <h2>베스트 상품</h2>
@@ -43,8 +51,8 @@ function BestItems() {
               alt={item.title}
               className="itemCard"
               onError={(e) => {
-                e.target.onerror = null; // default image 로딩 실패 시 오류 제거, 무한루프방지
-                e.target.src = defaultImage;
+                (e.target as HTMLImageElement).onerror = null; // default image 로딩 실패 시 오류 제거, 무한루프방지
+                (e.target as HTMLImageElement).src = defaultImage;
               }}
             />
             <div className="itemInfo">
@@ -60,6 +68,6 @@ function BestItems() {
       </div>
     </section>
   );
-}
+};
 
 export default BestItems;
