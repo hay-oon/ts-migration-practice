@@ -124,7 +124,10 @@ const Registration = () => {
             등록
           </Button>
         </div>
-        <form id="registration-form" onSubmit={(e) => e.preventDefault()}>
+        <form
+          id="registration-form"
+          onSubmit={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}
+        >
           <div className="form-group">
             <label>상품명</label>
             <input

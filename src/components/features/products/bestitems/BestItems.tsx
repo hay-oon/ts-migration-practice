@@ -50,7 +50,7 @@ const BestItems: React.FC = () => {
               src={item.images || defaultImage}
               alt={item.title}
               className="itemCard"
-              onError={(e) => {
+              onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                 (e.target as HTMLImageElement).onerror = null; // default image 로딩 실패 시 오류 제거, 무한루프방지
                 (e.target as HTMLImageElement).src = defaultImage;
               }}

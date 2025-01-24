@@ -72,7 +72,7 @@ const OnSaleItems: React.FC = () => {
               src={item.images || defaultImage}
               alt={item.name}
               className="itemCard"
-              onError={(e) => {
+              onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                 (e.target as HTMLImageElement).onerror = null; // as 로 타입지정 (??)
                 (e.target as HTMLImageElement).src = defaultImage;
               }}
