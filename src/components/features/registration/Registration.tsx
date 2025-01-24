@@ -67,7 +67,9 @@ const Registration = () => {
   const handleRemoveTag = (indexToRemove: number): void => {
     setProduct({
       ...product,
-      tags: product.tags.filter((_, index) => index !== indexToRemove), //_의 의미: 배열의 값이 필요 없을 때 사용
+      tags: product.tags.filter(
+        (_: string, index: number) => index !== indexToRemove
+      ), //_의 의미: 배열의 값이 필요 없을 때 사용
     });
   };
 
