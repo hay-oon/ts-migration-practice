@@ -30,7 +30,7 @@ const Registration = () => {
 
   const handleInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  ): void => {
     const { name, value } = e.target; // input 태그의 name과 value를 가져온다.
     setProduct({
       ...product,
@@ -39,7 +39,7 @@ const Registration = () => {
   };
 
   // onkeypress 이벤트 핸들러
-  const addTag = (e: KeyboardEvent<HTMLInputElement>) => {
+  const addTag = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === "Enter" && e.currentTarget.value.trim()) {
       e.preventDefault(); // 폼 제출 시 기본 동작 방지
       const newTag = e.currentTarget.value.trim();
@@ -64,14 +64,16 @@ const Registration = () => {
   };
 
   // 태그 삭제 함수: 삭제할 인덱스와 일치하지 않는 배열만 반환
-  const handleRemoveTag = (indexToRemove: number) => {
+  const handleRemoveTag = (indexToRemove: number): void => {
     setProduct({
       ...product,
       tags: product.tags.filter((_, index) => index !== indexToRemove), //_의 의미: 배열의 값이 필요 없을 때 사용
     });
   };
 
-  const registerProduct = async (e: MouseEvent<HTMLButtonElement>) => {
+  const registerProduct = async (
+    e: MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
     e.preventDefault(); // 폼 제출 시 기본 동작 방지
 
     try {
@@ -93,11 +95,11 @@ const Registration = () => {
     }
   };
 
-  const isFormValid = () => {
+  const isFormValid = (): boolean => {
     return (
-      product.name &&
-      product.description &&
-      product.price &&
+      product.name !== "" &&
+      product.description !== "" &&
+      product.price !== "" &&
       !errors.name &&
       !errors.description &&
       !errors.price

@@ -30,7 +30,7 @@ export const useProductValidation = (product: Product): ValidationResult => {
   }, [product]);
 
   // 필드 유효성 검사 함수
-  const validateFields = () => {
+  const validateFields = (): void => {
     const newErrors: Errors = {
       name: "",
       description: "",

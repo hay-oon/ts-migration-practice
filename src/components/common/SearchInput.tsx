@@ -11,7 +11,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ keyword, setKeyword }) => {
   const [inputValue, setInputValue] = useState<string>(keyword);
 
   // onChange 이벤트 핸들러
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value);
   };
 

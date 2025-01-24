@@ -30,22 +30,22 @@ const OnSaleItems: React.FC = () => {
   const navigate = useNavigate();
 
   // fetch data
+  const fetchOnSaleItems = async (): Promise<void> => {
+    try {
+      const response = await fetch(
+        `${BASE_URL}?page=${currentPage}&pageSize=${pageSize}&keyword=${keyword}`
+      );
+      if (!response.ok) throw new Error("데이터를 불러오는데 실패했습니다");
+
+      const data = await response.json();
+      setProductList(data.products);
+      setTotalPages(data.totalPages);
+    } catch (err) {
+      console.log("데이터 로딩 에러:", err);
+    }
+  };
+
   useEffect(() => {
-    const fetchOnSaleItems = async () => {
-      try {
-        const response = await fetch(
-          `${BASE_URL}?page=${currentPage}&pageSize=${pageSize}&keyword=${keyword}`
-        );
-        if (!response.ok) throw new Error("데이터를 불러오는데 실패했습니다");
-
-        const data = await response.json();
-        setProductList(data.products);
-        setTotalPages(data.totalPages);
-      } catch (err) {
-        console.log("데이터 로딩 에러:", err);
-      }
-    };
-
     fetchOnSaleItems();
   }, [currentPage, orderBy, pageSize, keyword]);
 

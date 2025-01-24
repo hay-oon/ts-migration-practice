@@ -14,7 +14,7 @@ const ProductSortDropdown: React.FC<ProductSortDropdownProps> = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   // dropdown handler
-  const handleSortChange = (value: string) => {
+  const handleSortChange = (value: string): void => {
     setOrderBy(value);
     setIsDropdownOpen(false);
   };

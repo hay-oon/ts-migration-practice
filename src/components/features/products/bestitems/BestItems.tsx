@@ -22,7 +22,7 @@ const BestItems: React.FC = () => {
 
   // fetch data
   useEffect(() => {
-    const fetchBestItems = async () => {
+    const fetchBestItems = async (): Promise<void> => {
       try {
         const response = await fetch(
           `${BASE_URL}/products?page=1&pageSize=${pageSize}&orderBy=favorite`
